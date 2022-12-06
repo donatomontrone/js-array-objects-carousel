@@ -63,7 +63,6 @@ const buttonNext = document.querySelector('div.next');
 
 let counter = 0;
 let divMyCarousel;
-
 let imgPosition = [];
 
 //Ciclo per tutta la lunghezza dell'array creando i div che mi servono
@@ -74,24 +73,25 @@ for (let index = 0; index < images.length; index++) {
     divCarouselImage.appendChild(divMyCarousel);
     imgPosition.push(divMyCarousel);
 }
-imgPosition[counter].classList.add('active');
+    imgPosition[counter].classList.add('active');
+
 
 //Aggiungo un evento click al bottone in alto
 buttonPrevious.addEventListener('click', function() {
-    //Diminiusco di uno il contatore
+    imgPosition[counter].classList.remove('active');
     counter--;
-    //Quando il contatore è diminuito tolgo la classe a quello precedente
-    imgPosition[counter + 1].classList.remove('active');
-    //Attivo la classe al div con lo stesso valore del contatore
+    if (counter < 0){
+        counter = imgPosition.length -1;
+    }
     imgPosition[counter].classList.add('active');
-
-    //Se il contatore ha raggiunto la lung
 });
 
 //Aggiungo un evento click al bottone in basso
 buttonNext.addEventListener('click', function(){
-    counter++
-    imgPosition[counter-1].classList.remove('active');
+    imgPosition[counter].classList.remove('active');
+    counter++;
+    if (counter > imgPosition.length -1){
+        counter = 0;
+    }
     imgPosition[counter].classList.add('active');
-    
 });

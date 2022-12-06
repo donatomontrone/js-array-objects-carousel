@@ -53,25 +53,27 @@ const images = [
 //Assegno ad una variabile l'elemento parent
 const divCarouselImage = document.querySelector('div.carousel-image');
 
-//Assegno ad una variabile il div che conterrà le img //!Potrebbe servirmi all'esterno
-let divMyCarousel;
+// //Assegno ad una variabile il div che conterrà le img //!Potrebbe servirmi all'esterno
+// let divMyCarousel;
 
 //Assegno i due bottoni che mi serviranno per l'eventListener
 const buttonPrevious = document.querySelector('div.previous');
 const buttonNext = document.querySelector('div.next');
 
+
+
 //Ciclo per tutta la lunghezza dell'array creando i div che mi servono
 for (let index = 0; index < images.length; index++) {
-    divMyCarousel = document.createElement('div');
+    let divMyCarousel = document.createElement('div');
     divMyCarousel.innerHTML = `<img src="./${images[index].image}" alt="image">`
     divMyCarousel.classList.add('my_carousel-item')
     divCarouselImage.appendChild(divMyCarousel);
+    //Aggiungo un evento click al bottone in alto
+    buttonPrevious.addEventListener('click', function() {
+    });
+    
+    //Aggiungo un evento click al bottone in basso
+    buttonNext.addEventListener('click', function(){
+    });
 }
 
-//Aggiungo un evento click al bottone in alto
-buttonPrevious.addEventListener('click', function() {
-});
-
-//Aggiungo un evento click al bottone in basso
-buttonNext.addEventListener('click', function(){
-});

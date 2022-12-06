@@ -54,7 +54,6 @@ const images = [
 const divCarouselImage = document.querySelector('div.carousel-image');
 
 // //Assegno ad una variabile il div che conterrà le img //!Potrebbe servirmi all'esterno
-// let divMyCarousel;
 
 //Assegno i due bottoni che mi serviranno per l'eventListener
 const buttonPrevious = document.querySelector('div.previous');
@@ -62,18 +61,37 @@ const buttonNext = document.querySelector('div.next');
 
 
 
+let counter = 0;
+let divMyCarousel;
+
+let imgPosition = [];
+
 //Ciclo per tutta la lunghezza dell'array creando i div che mi servono
 for (let index = 0; index < images.length; index++) {
     let divMyCarousel = document.createElement('div');
     divMyCarousel.innerHTML = `<img src="./${images[index].image}" alt="image">`
     divMyCarousel.classList.add('my_carousel-item')
     divCarouselImage.appendChild(divMyCarousel);
-    //Aggiungo un evento click al bottone in alto
-    buttonPrevious.addEventListener('click', function() {
-    });
-    
-    //Aggiungo un evento click al bottone in basso
-    buttonNext.addEventListener('click', function(){
-    });
+    imgPosition.push(divMyCarousel);
 }
+imgPosition[counter].classList.add('active');
 
+//Aggiungo un evento click al bottone in alto
+buttonPrevious.addEventListener('click', function() {
+    //Diminiusco di uno il contatore
+    counter--;
+    //Quando il contatore è diminuito tolgo la classe a quello precedente
+    imgPosition[counter + 1].classList.remove('active');
+    //Attivo la classe al div con lo stesso valore del contatore
+    imgPosition[counter].classList.add('active');
+
+    //Se il contatore ha raggiunto la lung
+});
+
+//Aggiungo un evento click al bottone in basso
+buttonNext.addEventListener('click', function(){
+    counter++
+    imgPosition[counter-1].classList.remove('active');
+    imgPosition[counter].classList.add('active');
+    
+});

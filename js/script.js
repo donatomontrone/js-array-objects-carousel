@@ -25,7 +25,7 @@
 const images = [
     {
         image: 'img/01.webp',
-        title: 'Marvel\'s Spiderman Miles Morale',
+        title: 'Marvel\'s Spiderman Miles Morales',
         text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
     },
     {
@@ -52,6 +52,9 @@ const images = [
 
 //Assegno ad una variabile l'elemento parent
 const divCarouselImage = document.querySelector('div.carousel-image');
+const mainElement = document.querySelector('main');
+
+const divThumbnails = document.querySelector('div.carousel-thumbnails');
 
 // //Assegno ad una variabile il div che conterrà le img //!Potrebbe servirmi all'esterno
 
@@ -62,36 +65,78 @@ const buttonNext = document.querySelector('div.next');
 
 
 let counter = 0;
-let divMyCarousel;
 let imgPosition = [];
+let thumbPosition = [];
 
 //Ciclo per tutta la lunghezza dell'array creando i div che mi servono
 for (let index = 0; index < images.length; index++) {
     let divMyCarousel = document.createElement('div');
-    divMyCarousel.innerHTML = `<img src="./${images[index].image}" alt="image">`
+    divMyCarousel.innerHTML = `<img src="./${images[index].image}" alt="image">
+    <h3>${images[index].title}</h3>
+    <p>${images[index].text}</p>`
     divMyCarousel.classList.add('my_carousel-item')
     divCarouselImage.appendChild(divMyCarousel);
     imgPosition.push(divMyCarousel);
+    //Aggiungo le thumbnails
+    let divMyThumbnail = document.createElement('div');
+    divMyThumbnail.innerHTML = `<img src="./${images[index].image}" alt="image">`
+    divMyThumbnail.classList.add('my_thumbnail-item');
+    divThumbnails.appendChild(divMyThumbnail);
+    thumbPosition.push(divMyThumbnail);
 }
     imgPosition[counter].classList.add('active');
-
+    thumbPosition[counter].classList.add('active');
 
 //Aggiungo un evento click al bottone in alto
 buttonPrevious.addEventListener('click', function() {
     imgPosition[counter].classList.remove('active');
+    thumbPosition[counter].classList.remove('active');
     counter--;
     if (counter < 0){
-        counter = imgPosition.length -1;
+        counter = imgPosition.length - 1;
     }
     imgPosition[counter].classList.add('active');
+    thumbPosition[counter].classList.add('active');
 });
 
 //Aggiungo un evento click al bottone in basso
 buttonNext.addEventListener('click', function(){
     imgPosition[counter].classList.remove('active');
+    thumbPosition[counter].classList.remove('active');
     counter++;
-    if (counter > imgPosition.length -1){
-        counter = 0;
+    if (counter > imgPosition.length - 1){
+    counter = 0;
     }
     imgPosition[counter].classList.add('active');
+    thumbPosition[counter].classList.add('active');
 });
+
+console.log(imgPosition);
+
+
+
+
+// const carouselWrapper = document.querySelector("div.carousel-image");
+
+// let activeIndex = 0;
+//     images.forEach((element, index) => {
+//         carouselWrapper.innerHTML +=
+//         `<div class="my_carousel-item">
+//             <img src="./${element.image}" alt="${element.title}">
+//         </div`
+//     });
+
+// document.getElementsByClassName('my_carousel-item')[activeIndex].classList.add('active');
+
+//const buttonPrevious = document.querySelector('div.previous');
+
+// buttonPrevious.addEventListener(('click'), function(){
+//     document.querySelector(div.my_carousel-item.active).classList.remove('active');
+//     activeIndex--;
+//     document.getElementsByClassName('my_carousel-item')[activeIndex].classList.add('active');
+// })
+
+//const buttonNext = document.querySelector('div.next');
+//     document.querySelector(div.my_carousel-item.active).classList.remove('active');
+//     activeIndex++;
+//     document.getElementsByClassName('my_carousel-item')[activeIndex].classList.add('active');

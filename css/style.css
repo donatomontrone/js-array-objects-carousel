@@ -8,22 +8,42 @@ main{
 }
 
 div.carousel-wrapper{
-    width: 77%;
-    height: 680px;
+    width: 80%;
+    height: 100%;
     margin: auto;
     background-color: aqua;
     position: relative;
 }
 
 div.carousel-image{
-    width: 100%;
+    width: 80%;
     background-color: blue;
 }
 
-/* div.carousel-thumbnails{
-    width: 21.5%;
-    background-color: violet;
-} */
+div.carousel-thumbnails{
+    width: 20%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+div.my_thumbnail-item{
+    height: 20%;
+    width: 100%;
+    opacity: .5;
+    }
+
+div.my_thumbnail-item img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    }
+
+div.my_thumbnail-item.active{
+    opacity: 1;
+    border: 3px white;
+}
 
 .font-color-white{
     color:white;
